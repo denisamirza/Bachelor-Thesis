@@ -1,0 +1,103 @@
+.example-form {
+  width: 80%;
+  padding: 10%;
+  padding-top: 40px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: rgb(247, 247, 247);
+  background-image: linear-gradient(rgb(55, 0, 158), rgb(255, 180, 180));
+}
+
+.center {
+  position: static;
+  left: 50%;
+  width: 89%;
+  height: 70%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.116);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+img {
+  height: 12%;
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+h1 {
+  padding-top: 20%;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+h2 {
+  color:white;
+  text-align: center;
+}
+
+h4 {
+  color:rgba(0, 0, 0, 0.63);
+}
+
+a {
+  padding-top: 3px;
+}
+.inputfile-box {
+  position: relative;
+}
+
+.inputfile {
+  display: none;
+}
+
+.container {
+  display: inline-block;
+  width: 100%;
+}
+
+.file-box {
+  display: inline-block;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.329);
+  padding: 10px 0px 10px 10px;
+  box-sizing: border-box;
+  height: 40px
+}
+
+.button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: white solid 5px;
+}
+
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.mat-form-field-should-float {
+  font-size: 15px;
+}
+
+.flex{
+  padding-top: 35px;
+  display: flex;
+  justify-content: center;
+}

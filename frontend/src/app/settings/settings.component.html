@@ -1,0 +1,45 @@
+<div id={{postId}} class="onTop">
+  <header>
+    <button (click)="shared.toggleDiv(postId)">
+      <img class="left" src="../assets/images/left.png">
+    </button>
+    <h2>Profile settings</h2>
+    <button>Save</button>
+  </header>
+
+  <div class="field">
+    <h3>Profile picture</h3>
+    <div class="container">
+      <img class="profile" src="{{shared.getImg()}}">
+      <input type="file" class="choose">
+    </div>
+  </div>
+
+  <div class="field">
+    <h3>Name</h3>
+    <input formControlName="name" class="input">
+  </div>
+
+  <div class="field">
+    <h3>Surname</h3>
+    <input formControlName="surname" class="input">
+  </div>
+
+  <div class="field">
+    <h3>Password</h3>
+    <h6>Old password</h6>
+    <input formControlName="oldPassword" class="input" type="password">
+    <h6>New password</h6>
+    <input formControlName="password" class="input" type="password" >
+  </div>
+
+  <div class="field">
+    <h3>Log out</h3>
+    <a routerLink="/login"><img (click)="clearLocalStorage()" class="logout" src="../assets/images/logout.png"></a>
+  </div>
+
+  <div class="fit"></div>
+
+
+</div>
+

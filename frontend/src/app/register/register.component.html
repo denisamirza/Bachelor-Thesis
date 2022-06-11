@@ -1,0 +1,63 @@
+
+<div class="fullscreen">
+  <img src="../assets/images/logo.png">
+  <div class="center">
+    <h1>SIGN UP</h1>
+    <h2>Please enter your personal info</h2>
+    <form action="/upload" enctype="multipart/form-data" method="POST">
+      <owl-carousel-o [options]="customOptions" [formGroup]="form">
+        <ng-template carouselSlide>
+          <div class="example-form">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" required>
+              <mat-error style="font-size:14px;" *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" required>
+              <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                  {{showPassword?'visibility_off':'visibility'}}
+              </mat-icon>
+            </mat-form-field>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div class="example-form">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Surname</mat-label>
+              <input matInput formControlName="surname" required>
+            </mat-form-field>
+            <div class="file-input">
+              <div class="inputfile-box">
+                <input type="file" id="file" class="inputfile" (change)="updateFile($event)">
+                <label for="file">
+                  <span id="file-name" class="file-box">
+                    {{fileToUpload}}
+                  </span>
+                  <span class="file-button">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                    Choose a picture
+                  </span>
+                </label>
+              </div>
+            </div>
+            <button class="button" mat-raised-button (click)="register()">REGISTER</button>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </form>
+    <div class="flex">
+      <h4>Do you already have an account?</h4>
+      <a routerLink="/login">SIGN IN</a>
+    </div>
+  </div>
+</div>
+
+

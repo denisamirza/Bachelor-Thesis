@@ -1,0 +1,28 @@
+
+<div class="fullscreen">
+  <img src="../assets/images/logo.png">
+  <div class="center">
+    <h1>SIGN IN</h1>
+    <h2>Please enter your credentials</h2>
+    <div class="example-form" [formGroup]="form">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error style="font-size:14px;" *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" required>
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+            {{showPassword?'visibility_off':'visibility'}}
+        </mat-icon>
+      </mat-form-field>
+    </div>
+    <button class="button" mat-raised-button (click)="login()">LOGIN</button>
+    <div class="flex">
+      <h4>You don't have an account?</h4>
+      <a routerLink="/register">REGISTER</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<ng-container *ngIf="isLocationEnabled; else enableGps">
+  <header>
+    <div class="search" *ngIf="!targetLocation, else targetPlace">
+      <input matInput matGoogleMapsAutocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)"
+      (onLocationSelected)="onLocationSelected($event)" class="input">
+      <img class="pin" src="assets/images/search.png">
+    </div>
+  </header>
+  <agm-map [disableDefaultUI]="true" (mapReady)="setOptions($event)">
+    <agm-direction (onResponse)="onResponse($event)" *ngIf="origin" [origin]="origin" [destination]="destination" [renderOptions]="renderOptions" [markerOptions]="markerOptions"></agm-direction>
+    <agm-overlay
+    *ngFor      = "let item of users"
+    [latitude]  = "item.latitude"
+    [longitude] = "item.longitude"
+  >
+    <!-- blue html square -->
+    <div>
+      <img class="marker" src="{{item.userImg}}">
+      <div class="arrow"></div>
+    </div>
+    <agm-info-window>
+      <strong>{{item.name}} {{item.surname}}</strong>
+    </agm-info-window>
+  </agm-overlay>
+
+  </agm-map>
+  <ng-template #targetPlace>
+    <div class="targetPlace">
+      <h3>Targer place</h3>
+      <h4>500 km</h4>
+      <h4>2h 30min</h4>
+    </div>
+  </ng-template>
+  <div class="incidentDiv">
+    <button><img class="incident" src="assets/images/hazard.png"></button>
+  </div>
+</ng-container>
+
+<ng-template #enableGps>
+  <div class="enableGps">
+    <img class="gps" src="assets/images/gps.png">
+    Please enable your GPS
+  </div>
+</ng-template>
+<app-navbar></app-navbar>

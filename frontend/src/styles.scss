@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-form-field-label{
+  color:rgb(0, 0, 0) !important;
+}
+.mat-form-field-underline{
+  background-color:rgba(0, 0, 0, 0) !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(0, 0, 0, 0) !important;
+  background-color: rgb(255, 255, 255) !important;
+  border-radius: 5px;
+}
+
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");

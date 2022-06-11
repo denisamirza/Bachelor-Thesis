@@ -1,0 +1,115 @@
+agm-map {
+  height: 100%;
+  width: 100%;
+  z-index: -10;
+  top:0;
+  outline: 1px solid red;
+  margin-top: -20vh;
+}
+
+.input {
+  background-color: #ffffff;
+  border: none;
+  width:81%;
+  border-radius: 15px;
+  height: 40px;
+  font-size: 20px;
+  margin: auto;
+  margin-left: 2vw;
+  padding-right: 12vw;
+}
+
+.search {
+  padding: 10px;
+  background-color: transparent;
+}
+
+header {
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  background-color: rgba(255, 0, 0, 0);
+  z-index: 10;
+}
+
+.pin {
+  height: 5vw;
+  margin-left: -10vw;
+}
+
+.enableGps {
+  background-image: linear-gradient(rgb(55, 0, 158), rgb(255, 180, 180));
+  height: 100vh;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 55px;
+  line-height: 140%;
+}
+
+.gps {
+  height: 15%;
+  width: 40%;
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  margin-top: 20vh;
+}
+
+.incident {
+  height: 15%;
+  width: 55%;
+}
+
+.incidentDiv {
+  position: absolute;
+  bottom: 25vh;
+  margin-left: 75vw;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.targetPlace {
+  z-index: 10;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.642);
+  height: 18vh;
+  width: 97vw;
+  top: 83vh;
+  box-shadow: 5px 10px 20px rgba(28, 28, 28, 0.215) inset;
+  padding: 5px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+h3 {
+  padding-top: 7px;
+  font-weight: bold;
+}
+
+h3, h4 {
+  line-height: 8px;
+}
+
+.marker {
+  height: 28px;
+  width: 28px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  outline: solid 5px #E74C3C;
+  border: solid 1px white;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 20px solid #E74C3C;
+  margin-top: -5px;
+}

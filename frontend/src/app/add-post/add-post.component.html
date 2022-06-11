@@ -1,0 +1,36 @@
+<div id={{postId}} class="onTop" [formGroup]="form">
+  <header>
+    <button (click)="shared.toggleDiv(postId)">
+      <img class="left" src="../assets/images/left.png">
+    </button>
+    <h2>Add new post</h2>
+    <button (click)="sendData()">Post</button>
+  </header>
+
+  <br><br>
+  <div class="field">
+    <h3>Picture</h3>
+    <div class="container">
+      <div class="addPic">+</div>
+      <img class="profile" src="{{postImg}}">
+      <input type="file" class="choose" (change)="updateFile($event)">
+    </div>
+  </div>
+
+  <div class="field">
+    <h3>Title</h3>
+    <input formControlName="title" class="input">
+  </div>
+
+  <div class="field">
+    <h3>Location</h3>
+    <input matInput matGoogleMapsAutocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)"
+    (onLocationSelected)="onLocationSelected($event)" class="input">
+  </div>
+
+  <div class="field">
+    <h3>Description</h3>
+    <textarea formControlName="description"></textarea>
+  </div>
+  <br>
+</div>

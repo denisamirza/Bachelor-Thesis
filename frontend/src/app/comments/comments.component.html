@@ -1,0 +1,30 @@
+<div class="onTop" id="{{'post-'+id}}">
+  <header>
+    <button (click)="shared.toggleDiv('post-'+id)">
+      <img class="left" src="../assets/images/left_white.png">
+    </button>
+  </header>
+
+
+  <ng-container *ngFor="let item of comments">
+    <div class="next">
+      <div class="comment">
+        <div><img src="{{item.userImg}}" class="userImg"></div>
+        <div>
+          <h6>{{item.name}} {{item.surname}}</h6>
+          <textarea readonly>{{item.comment}}</textarea>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <footer>
+    <div class="comment">
+      <div><img src="{{shared.getImgSrc()}}" class="userImg"></div>
+      <div>
+        <textarea class="new-comment" (keydown.enter)="addComment($event)" placeholder="Write your comment..." name="comment" [(ngModel)]="comment"></textarea>
+      </div>
+    </div>
+  </footer>
+
+</div>

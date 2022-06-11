@@ -1,0 +1,49 @@
+<div id="{{id}}" class="onTop">
+  <header>
+    <button (click)="shared.toggleDiv(id)">
+      <img class="left" src="../assets/images/left_white.png">
+    </button>
+  </header>
+  <div id="containerId">
+    <img class="post-image" src={{imgUrl}}>
+    <div id="example">
+      <img class="pin" class="center" src="assets/images/pin.png">
+    </div>
+  </div>
+  <div class="field">
+    <div class="left_right">
+      <div>
+        <img src="{{userImg}}" class="userImg">
+        <h3 class="name">{{name}} {{surname}}</h3>
+      </div>
+      <div>
+        <button class="follow">Follow</button>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <span>
+      <img style="float: left;"src="assets/images/place.png" class="place">
+      <h5 style="padding-top: 0.7vh;font-weight: 500;">Turckia, Ankaradfv4gregrvgrer</h5>
+      <img style="float: left;"src="assets/images/calendar.png" class="place">
+      <h5 style="padding-top: 0.7vh;font-weight: 500;">{{date}}</h5>
+    </span>
+    <h3>{{title}}</h3>
+    <h5>{{description}}</h5>
+  </div>
+  <span class="column">
+    <button (click)="shared.toggleDiv('pins-'+id)"><span><img src="assets/images/pin.png" class="pin-comment">{{commentNr}}</span></button>
+  </span>
+  <span class="column">
+    <button (click)="shared.toggleDiv('post-'+id)"><span><img src="assets/images/comment.png" class="pin-comment">{{commentNr}}</span></button>
+  </span>
+  <div class="field" style="margin-top: 6.5vh;"></div>
+  <button class="footer-button"><span><img src="assets/images/dir.png" class="dir">  Get directions</span></button>
+
+  <div class="fit"></div>
+  <app-comments [id]='id' (commentNr)=sendCommentNr($event)></app-comments>
+  <app-post-pins [id]='id'></app-post-pins>
+</div>
+
+<app-navbar></app-navbar>
+

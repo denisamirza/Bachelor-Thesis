@@ -1,0 +1,149 @@
+.profile {
+  width: 15vh;
+  height: 15vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  margin-top: 2hv;
+}
+
+.settings {
+  width: 6vh;
+  height: 5.5vh;
+  margin-left: 85vw;
+  margin-top: 3vw;
+}
+
+.background {
+  background: rgb(247, 247, 247);
+  background-image: linear-gradient(rgb(0, 0, 0), rgb(255, 255, 255));
+  text-align: center;
+  z-index: 9;
+  max-height: 30vh;
+}
+
+
+.left {
+  float: left;
+}
+
+button {
+  background-color: white;
+  width: 50%;
+  height: 12vh;
+  max-height: 6vh;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.229);
+  font-size: 2vh;
+  font-weight : bold ;
+}
+
+.selected {
+  border-bottom: 3px solid rgb(155, 1, 155);
+  color: rgb(107, 0, 98);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.cell {
+  text-align: center;
+  padding-left: 0.7rem;
+  height: 10%;
+}
+
+
+.fit {
+  height: 37vh;
+  width: 100vw;
+}
+
+header {
+  display: block;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+.footer-button, .footer-button2{
+  right: 3vw;
+  border-radius: 50%;
+  width: 12vw;
+  height: 12vw;
+  position: fixed;
+  margin-bottom: 35px;
+  bottom: 35px;
+  border: 2px solid rgb(105, 105, 105);
+}
+
+.footer-button2 {
+  right: 70px;
+}
+
+.myimage {
+  width: 7vw;
+}
+
+.post-image {
+  height: 46.5vw;
+  width: 46.5vw;
+  border-radius: 15%;
+}
+
+h4 {
+  text-align: left;
+  font-weight: bold;
+  line-height: 1.1em;
+  padding-left: 2vw;
+  padding-right: 7vw;
+  font-size: 3.5vw;
+}
+
+.inline {
+  position: relative;
+  transform: translateY(-0.15in);
+  opacity: 0.4;
+  display: inline-flex;
+  flex-wrap: wrap;
+  float: left;
+  z-index: -3;
+}
+
+.pin {
+  height: 5vw;
+  padding-left: 1vw;
+}
+
+#containerId {
+  display: grid;
+  grid-template-columns: 70% 0px 5%;
+  grid-template-rows: 40% 0px;
+}
+
+#example {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  width: 10vw;
+  height: 10vw;
+  margin-top: 1.8vh;
+}
+
+.center {
+  margin:auto;
+  padding-top: 1.5vw;
+  height: 6.5vw;
+}
+
+a {
+  font-size: 1.5vh;
+}
+
+h2 {
+  font-size: 2.5vh;
+  margin-bottom: 0;
+}

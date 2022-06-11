@@ -1,0 +1,84 @@
+.onTop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  width: 100vw;
+  display: none;
+  overflow-y: scroll;
+  overflow-x: none;
+  z-index: 3;
+}
+
+header {
+  background-image: linear-gradient(rgb(0, 0, 0), white);
+  height: 5vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 90%;
+}
+
+
+.comment {
+  position: static;
+  display: grid;
+  grid-template-columns: 1fr 90%;
+  max-height: 10vh;
+  padding: 15px;
+}
+
+.next {
+  position: static;
+  margin: 0;
+  max-height: 12vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.151);
+}
+
+.userImg {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+}
+
+h6 {
+  font-size: small;
+  font-weight: bold;
+  text-align: left;
+  padding-right: 7vw;
+  padding-left: 3vw;
+}
+
+textarea {
+  width: 75vw;
+  height: 6vh;
+  border: none;
+  resize: none;
+  position: relative;
+  top: -2vh;
+  outline: none;
+}
+
+footer {
+  position: fixed;
+  margin-bottom: 4vh;
+  bottom: 0px;
+  width: 100vw;
+  background-color: #ffffff;
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  border-top: 1px solid rgb(185, 185, 185)
+}
+
+.new-comment {
+  top: 1vh;
+}
+
+.left {
+  height: 20px;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0);
+  font-weight: bold;
+  border: none;
+}

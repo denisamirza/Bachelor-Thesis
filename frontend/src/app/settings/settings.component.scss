@@ -1,0 +1,135 @@
+.onTop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  width: 100%;
+  display: none;
+  overflow-y: scroll;
+  overflow-x: none;
+}
+
+.profile {
+  width: 160px;
+  height: 160px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  margin-top: 5%;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+
+.centered {
+  background-color: rgba(0, 0, 0, 0.279);
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+}
+
+header {
+  position: fixed;
+  background-image: linear-gradient(to bottom right,rgb(55, 0, 158), rgb(255, 180, 180));
+  height: 60px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 70% 1fr;
+  z-index: 10;
+}
+
+h2 {
+  margin: auto;
+  font-weight: bold;
+}
+
+h3 {
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+button {
+  background-color: rgba(252, 252, 252, 0);
+  font-weight: bold;
+  border: none;
+}
+
+.left {
+  height: 30px;
+}
+
+.field {
+  padding-top: 10px;
+  padding-bottom: 30px;
+  margin: 10px;
+  border-bottom: 1px solid rgb(171, 171, 171);
+}
+
+.choose::-webkit-file-upload-button {
+  color: white;
+  background: #a3a3a3;
+  border: none;
+  padding: 7px 15px;
+  font-weight: 700;
+  border-radius: 3px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 10pt;
+  margin-left: 28%;
+  margin-bottom: 10px;
+}
+
+.input {
+  background-color: #e2e2e2;
+  border: none;
+  width: 90%;
+  border-radius: 15px;
+  height: 40px;
+  font-size: 20px;
+  padding-left: 5%;
+  margin-left: 7px;
+}
+
+h6 {
+  margin-left: 11px;
+}
+
+.dir {
+  height: 40px;
+  width: 40px;
+}
+
+.fit {
+  height: 5vh;
+  width: 100vw;
+}
+
+.logout {
+  display: block;
+  height: 8vw;
+  width: 9vw;
+  margin: auto;
+}
+
+.footer-button {
+  border-radius: 20px;
+  width: 45.7vw;
+  border: 1px solid rgb(105, 105, 105);
+  left: 27%;
+  background-color: white;
+}

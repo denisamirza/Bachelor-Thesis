@@ -1,0 +1,72 @@
+
+<header>
+  <div class="background">
+    <img class="settings" (click)="shared.toggleDiv(settingsId)" src="assets/images/settings.png">
+    <img class="profile" src={{img}}>
+    <h2>{{shared.getName()}} {{shared.getSurname()}}</h2>
+    <a>232 Followers | 7854 Following</a>
+  </div>
+  <div>
+    <button class="left" class="selected" (click)="showPosts()" id="posts">Posts</button>
+    <button (click)="showPins()" id="pins">Pins</button>
+  </div>
+</header>
+
+
+<div class="fit"></div>
+<div class="container" id="postsDiv">
+  <ng-container *ngFor="let item of posts">
+    <div class="cell">
+      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" [id]='item._id'></app-post>
+      <div id="containerId">
+        <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item._id)">
+        <div id="example">
+          <img class="pin" class="center" src="assets/images/pin.png">
+        </div>
+      </div>
+      <h4>{{item.title}}</h4>
+      <div class="inline">
+        <img class="pin" src="assets/images/pin.png">
+        <h4>2  </h4>
+        <img class="pin" src="assets/images/comment.png">
+        <h4>{{item.commentNr}}</h4>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="container" id="pinsDiv" style="display: none;">
+  <ng-container *ngFor="let item of posts">
+    <div class="cell">
+      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" [id]='item._id'></app-post>
+      <div id="containerId">
+        <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item._id)">
+        <div id="example">
+          <img class="pin" class="center" src="assets/images/pin.png">
+        </div>
+      </div>
+      <h4>{{item.title}}</h4>
+      <div class="inline">
+        <img class="pin" src="assets/images/pin.png">
+        <h4>2  </h4>
+        <img class="pin" src="assets/images/comment.png">
+        <h4>2</h4>
+      </div>
+    </div>
+
+  </ng-container>
+</div>
+
+<button class="footer-button">
+  <img src="assets/images/filter.png"  class="myimage"/>
+</button>
+<button class="footer-button2" (click)="shared.toggleDiv(postId)">
+  <img src="assets/images/plus.png"  class="myimage"/>
+</button>
+
+<app-settings></app-settings>
+<app-add-post></app-add-post>
+
+<div style="height: 13vh;"></div>
+
+<app-navbar></app-navbar>

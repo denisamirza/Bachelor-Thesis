@@ -1,0 +1,84 @@
+.onTop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  width: 100vw;
+  display: none;
+  overflow-y: scroll;
+  overflow-x: none;
+  z-index: 3;
+}
+
+header {
+  background-image: linear-gradient(rgb(0, 0, 0), white);
+  height: 5vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 90%;
+}
+
+.userImg {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+}
+
+h6 {
+  font-size: small;
+  font-weight: bold;
+  text-align: left;
+  padding-right: 7vw;
+  padding-left: 3vw;
+}
+
+
+button {
+  background-color: rgba(255, 255, 255, 0);
+  font-weight: bold;
+  border: none;
+}
+
+.field {
+  border-bottom: 1px solid rgb(171, 171, 171);
+  width: 100vw;
+}
+
+.name {
+  margin-top: 1.3vh;
+  margin-left: 3px;
+  font-weight: 900;
+  font-size: 95%;
+  float: left;
+}
+
+.left_right {
+  display: table;
+  width: 100vw;
+}
+
+.left_right > div {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.left {
+  height: 20px;
+}
+
+.follow {
+  margin-top: 1.5vh;
+  max-height: 3.5vh;
+  max-width: 19vw;
+  padding: 6px;
+  background-color: rgb(211, 211, 211);
+  border-radius: 10px;
+}
+
+img{
+  margin-left: 20px;
+  margin-top: 1vh;
+  vertical-align:middle;
+  float: left;
+}

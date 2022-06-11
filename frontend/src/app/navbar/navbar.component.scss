@@ -1,0 +1,28 @@
+body {
+  margin-bottom: 0px;
+}
+
+footer {
+  position: fixed;
+  margin-bottom: 0px;
+  bottom: 0px;
+  width: 100vw;
+  background-color: #ffffff;
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  border-top: 1px solid rgb(185, 185, 185)
+}
+
+button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 1vh;
+}

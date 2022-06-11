@@ -1,0 +1,33 @@
+
+<header>
+  <div class="search">
+    <input matInput matGoogleMapsAutocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)"
+      (onLocationSelected)="onLocationSelected($event)" class="input">
+    <img class="searchpic" src="assets/images/search.png">
+  </div>
+</header>
+
+<div class="fit"></div>
+
+<div class="container" id="postsDiv">
+  <ng-container *ngFor="let item of posts">
+    <div class="cell">
+      <app-post [id]='item._id'></app-post>
+      <div id="containerId">
+        <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item._id)">
+        <div id="example">
+          <img class="pin" class="center" src="assets/images/pin.png">
+        </div>
+      </div>
+      <h4>{{item.title}}</h4>
+      <div class="inline">
+        <img class="pin" src="assets/images/pin.png">
+        <h4>2  </h4>
+        <img class="pin" src="assets/images/comment.png">
+        <h4>2</h4>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<app-navbar></app-navbar>
