@@ -1,0 +1,37 @@
+.comment {
+  position: static;
+  display: grid;
+  grid-template-columns: 1fr 90%;
+  max-height: 10vh;
+  padding: 15px;
+}
+
+.next, .unseen {
+  position: static;
+  padding: 2vw;
+  width: 96vw;
+  display: grid;
+  grid-template-columns: 1fr 60% 1fr;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.151);
+}
+
+.userImg {
+  padding-top: 20px;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+}
+
+.postImg {
+  width: 20vw;
+  height: 20vw;
+  border-radius: 5%;
+}
+
+h5 {
+  display: inline;
+}
+
+.unseen {
+  background-color: rgba(221, 221, 221, 0.549);
+}

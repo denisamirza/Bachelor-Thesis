@@ -1,6 +1,6 @@
-<div id={{postId}} class="onTop">
+<div id={{settingsId}} class="onTop">
   <header>
-    <button (click)="shared.toggleDiv(postId)">
+    <button (click)="shared.toggleDiv(settingsId)">
       <img class="left" src="../assets/images/left.png">
     </button>
     <h2>Profile settings</h2>
@@ -10,8 +10,8 @@
   <div class="field">
     <h3>Profile picture</h3>
     <div class="container">
-      <img class="profile" src="{{shared.getImg()}}">
-      <input type="file" class="choose">
+      <img class="profile" src="{{userImg}}">
+      <input type="file" class="choose" (change)="updateFile($event)">
     </div>
   </div>
 

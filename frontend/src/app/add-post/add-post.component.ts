@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedService } from "../shared/shared.service"
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';

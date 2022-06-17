@@ -89,6 +89,7 @@ export class SharedService {
     return this.surname;
   }
 
+
   deselectIcon() {
     this.feedlogo = this.feedlogo.replace('2', '');
     this.profilelogo = this.profilelogo.replace('2', '');

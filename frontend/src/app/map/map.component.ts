@@ -85,7 +85,7 @@ public markerOptions = {
   targetLocation: String | undefined;
 
   constructor(
-    private shared: SharedService,
+    public shared: SharedService,
     private http: HttpClient) {}
 
   ngOnDestroy(): void {

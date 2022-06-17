@@ -6,6 +6,7 @@ import { FeedComponent } from './feed/feed.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MapComponent } from './map/map.component';
 import { CommentsComponent } from './comments/comments.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'feed', component: FeedComponent },
   { path: 'profile/:email', component: ProfileComponent },
   { path: 'map', component: MapComponent},
-  { path: 'comments', component: CommentsComponent}
+  { path: 'comments', component: CommentsComponent},
+  { path: 'notifs', component: NotificationsComponent},
 ];
 
 @NgModule({

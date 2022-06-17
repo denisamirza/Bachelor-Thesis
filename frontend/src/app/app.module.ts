@@ -35,7 +35,9 @@ import { CommentsComponent } from './comments/comments.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { PostPinsComponent } from './post-pins/post-pins.component';
 import { AgmDirectionModule } from 'agm-direction';
-import { AgmOverlays } from "agm-overlays"
+import { AgmOverlays } from "agm-overlays";
+import { AddIncidentComponent } from './add-incident/add-incident.component';
+import { NotificationsComponent } from './notifications/notifications.component'
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { AgmOverlays } from "agm-overlays"
     SettingsComponent,
     CommentsComponent,
     UserListComponent,
-    PostPinsComponent
+    PostPinsComponent,
+    AddIncidentComponent,
+    NotificationsComponent
   ],
   imports: [
     MatFormFieldModule,
@@ -63,7 +67,7 @@ import { AgmOverlays } from "agm-overlays"
     AppRoutingModule,
     AgmOverlays,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCgUVrha4t7QGrCpAZu2v70J-tcIr3vIA0',
+      apiKey: 'AIzaSyCgUVrha4t7QGrCpAZu2v70J-tcIr3vIA00',
       libraries: ["places", "geometry"]
     }),
     AgmDirectionModule,

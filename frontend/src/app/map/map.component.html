@@ -32,7 +32,7 @@
     </div>
   </ng-template>
   <div class="incidentDiv">
-    <button><img class="incident" src="assets/images/hazard.png"></button>
+    <button (click)="shared.toggleDiv('incidentId')"><img class="incident" src="assets/images/hazard.png"></button>
   </div>
 </ng-container>
 
@@ -42,4 +42,6 @@
     Please enable your GPS
   </div>
 </ng-template>
+
+<app-add-incident></app-add-incident>
 <app-navbar></app-navbar>

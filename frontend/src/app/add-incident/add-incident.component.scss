@@ -1,0 +1,61 @@
+
+.onTop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  width: 100%;
+  display: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 100;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.cell {
+  text-align: center;
+  padding-left: 0.7rem;
+  height: 10%;
+}
+
+.incident {
+  width: 25vw;
+  height: 25vw;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+button {
+  background-color: rgba(252, 252, 252, 0);
+  font-weight: bold;
+  border: none;
+  color: white
+}
+
+.left {
+  height: 30px;
+}
+
+header {
+  position: fixed;
+  background-color: black;
+  height: 60px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 70% 1fr;
+  z-index: 9;
+}
+h2 {
+  margin: auto;
+  font-weight: bold;
+  color: white
+}
+
