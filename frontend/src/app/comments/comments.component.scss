@@ -12,13 +12,12 @@
 }
 
 header {
-  background-image: linear-gradient(rgb(0, 0, 0), white);
-  height: 5vh;
+  background-image: linear-gradient(to bottom right,rgb(55, 0, 158), rgb(255, 180, 180));
+  height: 7vh;
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr 90%;
 }
-
 
 .comment {
   position: static;
@@ -81,4 +80,8 @@ button {
   background-color: rgba(255, 255, 255, 0);
   font-weight: bold;
   border: none;
+}
+
+h2 {
+  padding-top: 10px;
 }

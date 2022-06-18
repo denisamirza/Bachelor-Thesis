@@ -1,10 +1,16 @@
 
 <header>
   <div class="background">
-    <img class="settings" (click)="shared.toggleDiv(settingsId)" src="assets/images/settings.png">
+    <img *ngIf="email == shared.getEmail(); else block" class="settings" (click)="shared.toggleDiv(settingsId)" src="assets/images/settings.png">
+    <ng-template #block><div style="height: 50px;"></div></ng-template>
     <img class="profile" src={{img}}>
-    <h2>{{shared.getName()}} {{shared.getSurname()}}</h2>
-    <a>232 Followers | 7854 Following</a>
+    <h2>{{surname}} {{name}}</h2>
+    <a (click)="shared.toggleDiv('followers')">{{followers.length}} Followers |</a>
+    <a (click)="shared.toggleDiv('followedBy')"> {{followedBy.length}} Following</a>
+    <div *ngIf="email != shared.getEmail()" class="follow">
+      <div *ngIf="isFollowed; else unfollow" (click)="follow()">Follow</div>
+      <ng-template #unfollow let-method="unfollow"><div>Unfollow</div></ng-template>
+    </div>
   </div>
   <div>
     <button class="left" class="selected" (click)="showPosts()" id="posts">Posts</button>
@@ -17,17 +23,17 @@
 <div class="container" id="postsDiv">
   <ng-container *ngFor="let item of posts">
     <div class="cell">
-      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" [id]='item._id'></app-post>
+      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" (pinNumberEmmiter)="setPinNumber($event, item)" [id]='item._id'></app-post>
       <div id="containerId">
         <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item._id)">
-        <div id="example">
+        <div id="example" *ngIf="email != shared.getEmail()">
           <img class="pin" class="center" src="assets/images/pin.png">
         </div>
       </div>
       <h4>{{item.title}}</h4>
       <div class="inline">
         <img class="pin" src="assets/images/pin.png">
-        <h4>2  </h4>
+        <h4>{{item.pinNr}}  </h4>
         <img class="pin" src="assets/images/comment.png">
         <h4>{{item.commentNr}}</h4>
       </div>
@@ -36,34 +42,35 @@
 </div>
 
 <div class="container" id="pinsDiv" style="display: none;">
-  <ng-container *ngFor="let item of posts">
+  <ng-container *ngFor="let item of pins">
     <div class="cell">
-      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" [id]='item._id'></app-post>
+      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" (pinNumberEmmiter)="setPinNumber($event, item)" [id]='item.postId'></app-post>
       <div id="containerId">
-        <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item._id)">
-        <div id="example">
-          <img class="pin" class="center" src="assets/images/pin.png">
+        <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item.postId)">
+        <div *ngIf="email == shared.getEmail()" id="example">
+          <img class="pin" class="center" src="assets/images/delete.png">
         </div>
       </div>
       <h4>{{item.title}}</h4>
       <div class="inline">
         <img class="pin" src="assets/images/pin.png">
-        <h4>2  </h4>
+        <h4>{{item.pinNr}}  </h4>
         <img class="pin" src="assets/images/comment.png">
-        <h4>2</h4>
+        <h4>{{item.commentNr}}</h4>
       </div>
     </div>
-
   </ng-container>
 </div>
 
 <button class="footer-button">
   <img src="assets/images/filter.png"  class="myimage"/>
 </button>
-<button class="footer-button2" (click)="shared.toggleDiv(postId)">
+<button *ngIf="email == shared.getEmail()" class="footer-button2" (click)="shared.toggleDiv(postId)">
   <img src="assets/images/plus.png"  class="myimage"/>
 </button>
 
+<app-follow [users]="followers" [id]="'followers'"></app-follow>
+<app-follow [users]="followedBy" [id]="'followedBy'"></app-follow>
 <app-settings></app-settings>
 <app-add-post></app-add-post>
 

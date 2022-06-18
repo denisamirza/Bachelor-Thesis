@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.http.post('http://code.pti.com.ro:8000/user/login', {
+    this.http.post('https://code.pti.com.ro:8000/user/login', {
             email: this.form.get("email")?.value,
             password: this.form.get("password")?.value
           }).subscribe(data => {

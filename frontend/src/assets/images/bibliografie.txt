@@ -1,0 +1,19 @@
+Learning Angular: A no-nonsense beginner's guide to building web applications with Angular 10 and TypeScript, 3rd Edition by Aristeidis Bampakos and Pablo Deeleman
+
+https://angular.io/docs
+
+https://www.simplilearn.com/tutorials/angular-tutorial/what-is-angular
+
+https://nodejs.org/api/
+
+https://en.wikipedia.org/wiki/Node.js
+
+https://www.w3schools.com/nodejs/nodejs_intro.asp
+
+https://www.mongodb.com/docs/manual/
+
+https://kubernetes.io/docs/home/
+
+https://developers.google.com/maps/documentation/javascript
+
+https://cloud.google.com/docs/get-started

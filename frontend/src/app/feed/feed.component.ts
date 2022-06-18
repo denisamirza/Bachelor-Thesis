@@ -11,6 +11,7 @@ import PlaceResult = google.maps.places.PlaceResult;
 })
 export class FeedComponent implements OnInit {
   posts: any = [];
+  result: any;
   constructor(
     private http: HttpClient,
     public shared: SharedService
@@ -35,8 +36,35 @@ export class FeedComponent implements OnInit {
       }
     })
   }
+  getPostWithLocation() {
+    this.http.get('http://code.pti.com.ro:8000/post/get-post-after-place/' + this.result, {
+    }).subscribe(data => {
+      this.posts = [];
+      let posts = JSON.parse(JSON.stringify(data));
+      for (let json of posts) {
+        console.log(json);
+        let imgPath = "http://code.pti.com.ro:8000/user/" + json.imgPath;
+        imgPath = imgPath.replace("\\", "/");
+        json.imgPath = imgPath;
+        this.posts.push(json);
+      }
+    })
+  }
+  setCommentNumber(newItem: any, item: any) {
+    console.log('lalalalalala')
+    console.log(newItem)
+    item.commentNr = newItem;
+  }
+
+  setPinNumber(newItem: any, item: any) {
+    console.log('lalalalalala')
+    console.log(newItem)
+    item.pinNr = newItem;
+  }
+
 
   onAutocompleteSelected(result: PlaceResult) {
+    this.result = result.place_id;
     console.log('onAutocompleteSelected: ', result);
   }
 

@@ -6,9 +6,7 @@
   </header>
   <div id="containerId">
     <img class="post-image" src={{imgUrl}}>
-    <div id="example">
-      <img class="pin" class="center" src="assets/images/pin.png">
-    </div>
+    <img (click)="pinPost()" class="pin" id="example" class="center" src="assets/images/pin.png">
   </div>
   <div class="field">
     <div class="left_right">
@@ -24,7 +22,7 @@
   <div class="field">
     <span>
       <img style="float: left;"src="assets/images/place.png" class="place">
-      <h5 style="padding-top: 0.7vh;font-weight: 500;">Turckia, Ankaradfv4gregrvgrer</h5>
+      <h5 style="padding-top: 0.7vh;font-weight: 500;">{{place}}</h5>
       <img style="float: left;"src="assets/images/calendar.png" class="place">
       <h5 style="padding-top: 0.7vh;font-weight: 500;">{{date}}</h5>
     </span>
@@ -32,7 +30,7 @@
     <h5>{{description}}</h5>
   </div>
   <span class="column">
-    <button (click)="shared.toggleDiv('pins-'+id)"><span><img src="assets/images/pin.png" class="pin-comment">{{commentNr}}</span></button>
+    <button (click)="shared.toggleDiv('pins-'+id)"><span><img src="assets/images/pin.png" class="pin-comment">{{pinNr}}</span></button>
   </span>
   <span class="column">
     <button (click)="shared.toggleDiv('post-'+id)"><span><img src="assets/images/comment.png" class="pin-comment">{{commentNr}}</span></button>
@@ -42,7 +40,7 @@
 
   <div class="fit"></div>
   <app-comments [id]='id' (commentNr)=sendCommentNr($event)></app-comments>
-  <app-post-pins [id]='id'></app-post-pins>
+  <app-post-pins [id]='id' (pinNr)=sendPinNr($event)></app-post-pins>
 </div>
 
 <app-navbar></app-navbar>

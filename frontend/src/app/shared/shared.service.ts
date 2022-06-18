@@ -165,8 +165,10 @@ export class SharedService {
   toggleDiv(id: any): void {
     console.log(id)
     var x = document.getElementById(id);
-    if (x!.style.display === "none" || x!.style.display === "") {
+    console.log(x?.style.display)
+    if (x!.style.display === "none" || x!.style.display === "" || x!.style.display === undefined) {
       x!.style.display = "block";
+      console.log(x?.style.display)
     }
     else {
       x!.style.display = "none";

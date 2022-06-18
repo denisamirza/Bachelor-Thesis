@@ -25,7 +25,6 @@ export class CommentsComponent implements OnInit {
     public shared: SharedService,
     private http: HttpClient
   ) {
-    console.log(this.id);
   }
 
   ngOnInit(): void {

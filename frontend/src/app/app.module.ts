@@ -37,7 +37,8 @@ import { PostPinsComponent } from './post-pins/post-pins.component';
 import { AgmDirectionModule } from 'agm-direction';
 import { AgmOverlays } from "agm-overlays";
 import { AddIncidentComponent } from './add-incident/add-incident.component';
-import { NotificationsComponent } from './notifications/notifications.component'
+import { NotificationsComponent } from './notifications/notifications.component';
+import { FollowComponent } from './follow/follow.component'
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     UserListComponent,
     PostPinsComponent,
     AddIncidentComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    FollowComponent
   ],
   imports: [
     MatFormFieldModule,
@@ -67,7 +69,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     AppRoutingModule,
     AgmOverlays,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCgUVrha4t7QGrCpAZu2v70J-tcIr3vIA00',
+      apiKey: 'AIzaSyCgUVrha4t7QGrCpAZu2v70J-tcIr3vIA0',
       libraries: ["places", "geometry"]
     }),
     AgmDirectionModule,

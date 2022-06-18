@@ -1,12 +1,11 @@
-<div class="onTop" id="{{'pins-'+id}}">
+<div class="onTop" id="{{id}}">
   <header>
-    <button (click)="shared.toggleDiv('pins-'+id)">
+    <button (click)="shared.toggleDiv(id)">
       <img class="left" src="../assets/images/left.png">
     </button>
-    <h2>Pins</h2>
   </header>
 
-  <ng-container *ngFor="let item of pins">
+  <ng-container *ngFor="let item of users">
     <div class="field">
       <div class="left_right">
         <div>
@@ -19,7 +18,3 @@
       </div>
     </div>
   </ng-container>
-
-
-</div>
-

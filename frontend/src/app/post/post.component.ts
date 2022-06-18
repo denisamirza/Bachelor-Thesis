@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SharedService } from "../shared/shared.service"
 import { HttpClient } from '@angular/common/http';
+import { AnyForUntypedForms } from '@angular/forms';
 
 @Component({
   selector: 'app-post',
@@ -16,9 +17,12 @@ export class PostComponent implements OnInit {
   name: String = '';
   surname: String = '';
   date: String = '';
-  placeId: String = '';
+  placeId: any = '';
   commentNr: any;
+  pinNr: any;
+  place: any;
   @Output() commentNumberEmmiter = new EventEmitter<any>();
+  @Output() pinNumberEmmiter = new EventEmitter<any>();
 
   constructor(
     private http: HttpClient,
@@ -36,8 +40,19 @@ export class PostComponent implements OnInit {
       this.title = post.title;
       this.description = post.description;
       this.date = post.time;
+      this.placeId = post.location;
+      // let options: google.maps.GeocoderRequest = {placeId: this.placeId};
+      const geocoder = new google.maps.Geocoder();
+      geocoder
+      .geocode({placeId: this.placeId },
+      (results) => {
+        console.log(results);
+        this.place = results[0].formatted_address;
+        console.log(this.place)
+      });
       this.getUser(post.email);
     })
+
   }
 
   getUser(email: string): void {
@@ -52,10 +67,26 @@ export class PostComponent implements OnInit {
     })
   }
 
+  pinPost(): void {
+    this.http.post('http://code.pti.com.ro:8000/pin/add-pin', {
+      email: this.shared.getEmail(),
+      postId: this.id,
+    }).subscribe(data => {
+      console.log("added")
+    })
+  }
+
   sendCommentNr(eventData: { number: string }) {
     console.log("wefewfef")
     this.commentNr = eventData.number;
     this.commentNumberEmmiter.emit(eventData.number);
+    console.log("wefewfssef")
+  }
+
+  sendPinNr(eventData: { number: string }) {
+    console.log("wefewfef")
+    this.pinNr = eventData.number;
+    this.pinNumberEmmiter.emit(eventData.number);
     console.log("wefewfssef")
   }
 

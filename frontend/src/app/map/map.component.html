@@ -11,17 +11,15 @@
     <agm-overlay
     *ngFor      = "let item of users"
     [latitude]  = "item.latitude"
-    [longitude] = "item.longitude"
-  >
-    <!-- blue html square -->
-    <div>
-      <img class="marker" src="{{item.userImg}}">
-      <div class="arrow"></div>
-    </div>
-    <agm-info-window>
-      <strong>{{item.name}} {{item.surname}}</strong>
-    </agm-info-window>
-  </agm-overlay>
+    [longitude] = "item.longitude">
+
+        <img class="marker" src="{{item.userImg}}">
+        <div class="arrow"></div>
+
+      <agm-info-window>
+        <strong>{{item.name}} {{item.surname}}</strong>
+      </agm-info-window>
+    </agm-overlay>
 
   </agm-map>
   <ng-template #targetPlace>

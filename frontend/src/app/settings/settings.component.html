@@ -1,10 +1,10 @@
-<div id={{settingsId}} class="onTop">
+<div id={{settingsId}} class="onTop" [formGroup]="form">
   <header>
     <button (click)="shared.toggleDiv(settingsId)">
       <img class="left" src="../assets/images/left.png">
     </button>
     <h2>Profile settings</h2>
-    <button>Save</button>
+    <button (click)="update()">Save</button>
   </header>
 
   <div class="field">

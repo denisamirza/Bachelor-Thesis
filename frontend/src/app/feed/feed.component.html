@@ -3,7 +3,7 @@
   <div class="search">
     <input matInput matGoogleMapsAutocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)"
       (onLocationSelected)="onLocationSelected($event)" class="input">
-    <img class="searchpic" src="assets/images/search.png">
+    <img (click)="getPostWithLocation()"class="searchpic" src="assets/images/search.png">
   </div>
 </header>
 
@@ -12,7 +12,7 @@
 <div class="container" id="postsDiv">
   <ng-container *ngFor="let item of posts">
     <div class="cell">
-      <app-post [id]='item._id'></app-post>
+      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" (pinNumberEmmiter)="setPinNumber($event, item)" [id]='item._id'></app-post>
       <div id="containerId">
         <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item._id)">
         <div id="example">
@@ -22,9 +22,9 @@
       <h4>{{item.title}}</h4>
       <div class="inline">
         <img class="pin" src="assets/images/pin.png">
-        <h4>2  </h4>
+        <h4>{{item.pinNr}}  </h4>
         <img class="pin" src="assets/images/comment.png">
-        <h4>2</h4>
+        <h4>{{item.commentNr}}</h4>
       </div>
     </div>
   </ng-container>

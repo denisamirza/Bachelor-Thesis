@@ -104,27 +104,31 @@ public markerOptions = {
     // Get Current Location Coordinates
     private setCurrentLocation() {
       if ('geolocation' in navigator) {
-       // navigator.geolocation.watchPosition((position) => {
-        navigator.geolocation.getCurrentPosition((position) => {
+        navigator.geolocation.watchPosition((position) => {
+       // navigator.geolocation.getCurrentPosition((position) => {
           this.isLocationEnabled = true;
-          if ( this.latitude != position.coords.latitude ||
+          if (this.latitude != position.coords.latitude ||
             this.longitude != position.coords.longitude) {
               this.latitude = position.coords.latitude;
               this.longitude = position.coords.longitude;
               this.updateLocation();
             }
           console.log(this.latitude + " " + this.longitude)
+        }, error=> {}, {
+          enableHighAccuracy: true
         });
       }
     }
 
 
     private updateLocation() {
+      console.log("wed")
       this.http.put('http://code.pti.com.ro:8000/location/update-location/' + this.shared.getEmail(), {
         email: this.shared.getEmail(),
         latitude: this.latitude,
         longitude: this.longitude
       }).subscribe(data => {
+        console.log("wed")
         this.getUsersOnTheMap();
       })
     }
@@ -145,6 +149,7 @@ public markerOptions = {
     }
 
     getUsersOnTheMap() {
+      this.users = [];
       this.http.get('http://code.pti.com.ro:8000/location/', {
       }).subscribe(data => {
         console.log(JSON.stringify(data));
