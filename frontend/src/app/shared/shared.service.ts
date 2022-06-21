@@ -10,6 +10,7 @@ export class SharedService {
   email: any;
   name: any;
   surname: any;
+  drivingMode!: string;
   feedlogo: string = 'assets/images/home2.png';
   profilelogo: string = 'assets/images/user.png';
   notifslogo: string = 'assets/images/bell.png';
@@ -27,6 +28,18 @@ export class SharedService {
       return localStorage.getItem("contentType");
     }
     return this.contentType;
+  }
+
+  setDrivingMode(drivingMode: string) {
+    this.drivingMode = drivingMode;
+    localStorage.setItem("drivingMode", this.drivingMode);
+  }
+
+  getDrivingMode() {
+    if (this.drivingMode == undefined) {
+      return localStorage.getItem("drivingMode");
+    }
+    return this.drivingMode;
   }
 
   setImgSrc(imgSrc: any) {

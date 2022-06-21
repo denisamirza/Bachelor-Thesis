@@ -1,37 +1,47 @@
 <ng-container *ngIf="isLocationEnabled; else enableGps">
   <header>
-    <div class="search" *ngIf="!targetLocation, else targetPlace">
+    <div class="search" *ngIf="!destination, else targetPlace">
       <input matInput matGoogleMapsAutocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)"
       (onLocationSelected)="onLocationSelected($event)" class="input">
-      <img class="pin" src="assets/images/search.png">
+      <img class="pin" (click)="toPlace()" src="assets/images/search.png">
     </div>
   </header>
-  <agm-map [disableDefaultUI]="true" (mapReady)="setOptions($event)">
-    <agm-direction (onResponse)="onResponse($event)" *ngIf="origin" [origin]="origin" [destination]="destination" [renderOptions]="renderOptions" [markerOptions]="markerOptions"></agm-direction>
+  <agm-map [disableDefaultUI]="true" [latitude]="latitude" [longitude]="longitude">
+    <div *ngIf="!drivingMode && origin && destination">
+      <div style="background: green; height: 30vh;"></div>
+      <agm-direction (onChange)="getcoords($event)" (status)="getStatus($event)" *ngIf="origin && destination && !drivingMode" [origin]="origin" [destination]="destination" [renderOptions]="renderOptions" [markerOptions]="markerOptions"></agm-direction>
+    </div>
+
     <agm-overlay
     *ngFor      = "let item of users"
     [latitude]  = "item.latitude"
     [longitude] = "item.longitude">
-
         <img class="marker" src="{{item.userImg}}">
         <div class="arrow"></div>
 
       <agm-info-window>
         <strong>{{item.name}} {{item.surname}}</strong>
+        <h5 (click)="goToProfile(item.email)">View Profile</h5>
+
       </agm-info-window>
+
     </agm-overlay>
 
   </agm-map>
   <ng-template #targetPlace>
-    <div class="targetPlace">
-      <h3>Targer place</h3>
-      <h4>500 km</h4>
-      <h4>2h 30min</h4>
+    <div *ngIf="!drivingMode" class="targetPlace">
+      <header>
+        <div class="search">
+          <input matInput class="input2" value="{{destination}}" readonly>
+          <img class="left" src="assets/images/left.png" (click)="resetMap()">
+        </div>
+      </header>
+      <h3>{{destination}}</h3>
+      <h4>{{distance}}</h4>
+      <h4>{{duration}}</h4>
     </div>
   </ng-template>
-  <div class="incidentDiv">
-    <button (click)="shared.toggleDiv('incidentId')"><img class="incident" src="assets/images/hazard.png"></button>
-  </div>
+
 </ng-container>
 
 <ng-template #enableGps>
@@ -40,6 +50,8 @@
     Please enable your GPS
   </div>
 </ng-template>
-
+<ng-container *ngFor="let item of users">
+  <app-profile-wrapper [email]="item.email"></app-profile-wrapper>
+</ng-container>
 <app-add-incident></app-add-incident>
 <app-navbar></app-navbar>

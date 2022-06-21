@@ -1,20 +1,26 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 import { Location } from '@angular-material-extensions/google-maps-autocomplete';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
 })
 
 export class MapComponent implements OnInit, OnDestroy {
+  drivingMode: boolean = false;
   latitude!: number;
   longitude!: number;
   zoom!: number;
+  duration: any = '';
+  distance: any = '';
+  dest: any = '';
+
   isLocationEnabled: boolean = false;
   googleMapType = 'satellite';
   icon = {
@@ -30,8 +36,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
   public renderOptions = {
     suppressMarkers: true,
-    preserveViewport: false
-}
+  }
 
 public markerOptions = {
     origin: {
@@ -42,10 +47,15 @@ public markerOptions = {
     },
 }
   public origin: any;
-  public destination: string = 'Bucuresti, Romania';
+  @Output() public destination: any;
   private heading: any;
   map: any;
   users: any = [];
+
+  resetMap() {
+    this.drivingMode = true;
+    this.destination = '';
+  }
 
   setOptions(map: any) {
     this.getDirection();
@@ -66,7 +76,6 @@ public markerOptions = {
       heading: 999,
       mapTypeControl: 'true',
       mapTypeControlOptions: {
-        mapTypeIds: ['hybrid'],
         position: google.maps.ControlPosition.TOP_LEFT,
         style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
       },
@@ -80,25 +89,60 @@ public markerOptions = {
   getDirection() {
     // Location within a string
     this.origin = new google.maps.LatLng(this.latitude,this.longitude);
-    this.destination = 'Bucuresti, Romania';
+    console.log(this.origin)
+    const geocoder = new google.maps.Geocoder();
+      geocoder
+      .geocode({location: this.origin},
+      (results) => {
+        console.log(results);
+      });
+  //  this.destination = 'Bucuresti, Romania';
   }
   targetLocation: String | undefined;
 
   constructor(
     public shared: SharedService,
-    private http: HttpClient) {}
+    private http: HttpClient,
+    private router: ActivatedRoute) {
+      console.log(this.shared.getDrivingMode())
+    }
 
   ngOnDestroy(): void {
-    this.http.delete('http://code.pti.com.ro:8000/location/delete-location/' + this.shared.getEmail(), {
+    this.http.delete('https://pti.com.ro/location/delete-location/' + this.shared.getEmail(), {
     }).subscribe(data => {
       console.log("deteled");
     })
   }
 
+  goToProfile(email: any) {
+    console.log(email)
+    this.shared.toggleDiv(email)
+  }
+
   ngOnInit() {
-    this.targetLocation="sdfw"
+    console.log("dsdce")
+    this.router.params.subscribe((params) => {
+      console.log(params)
+      if (params.dest != 'false') {
+        console.log(params.dest)
+        this.destination = params.dest;
+      }
+    })
     this.setCurrentLocation();
     this.shared.setMaplogo();
+  }
+
+  getcoords(event: any) {
+    let coords=JSON.stringify(event);
+    let coords3=JSON.parse(coords);
+
+    console.log("updated latitude :: "+coords3);
+    console.log("updated longitude :: "+coords3.lng);
+    console.log("updated longitude :: "+event.routes[0]);
+  }
+
+  public getStatus(status: any){
+    console.log(status);
   }
 
     // Get Current Location Coordinates
@@ -111,19 +155,23 @@ public markerOptions = {
             this.longitude != position.coords.longitude) {
               this.latitude = position.coords.latitude;
               this.longitude = position.coords.longitude;
+              this.origin = new google.maps.LatLng(this.latitude,this.longitude);
               this.updateLocation();
             }
+            this.origin = new google.maps.LatLng(this.latitude,this.longitude);
+            this.updateLocation();
+            this.getDistance();
           console.log(this.latitude + " " + this.longitude)
         }, error=> {}, {
-          enableHighAccuracy: true
+          enableHighAccuracy: true,
+
         });
       }
     }
 
-
     private updateLocation() {
       console.log("wed")
-      this.http.put('http://code.pti.com.ro:8000/location/update-location/' + this.shared.getEmail(), {
+      this.http.put('https://pti.com.ro/location/update-location/' + this.shared.getEmail(), {
         email: this.shared.getEmail(),
         latitude: this.latitude,
         longitude: this.longitude
@@ -140,6 +188,12 @@ public markerOptions = {
 
     onAutocompleteSelected(result: PlaceResult) {
       console.log('onAutocompleteSelected: ', result);
+      this.dest = result.formatted_address;
+    }
+
+    toPlace() {
+      this.destination = this.dest;
+      this.drivingMode = false;
     }
 
     onLocationSelected(location: Location) {
@@ -150,16 +204,16 @@ public markerOptions = {
 
     getUsersOnTheMap() {
       this.users = [];
-      this.http.get('http://code.pti.com.ro:8000/location/', {
+      this.http.get('https://pti.com.ro/location/', {
       }).subscribe(data => {
         console.log(JSON.stringify(data));
         let userCoordinates = JSON.parse(JSON.stringify(data));
         for (let json of userCoordinates) {
           console.log(json);
-            this.http.get('http://code.pti.com.ro:8000/user/get-user/' + json.email, {}).subscribe(data => {
+            this.http.get('https://pti.com.ro/user/get-user/' + json.email, {}).subscribe(data => {
               let user = JSON.parse(JSON.stringify(data));
               console.log(user);
-              let url = "http://code.pti.com.ro:8000/user/" ;
+              let url = "https://pti.com.ro/user/" ;
               url = url + user.imgPath;
               url = url.replace("\\", "/");
               json.userImg = url;
@@ -169,6 +223,27 @@ public markerOptions = {
             this.users.push(json);
         }
        // console.log("success" +  JSON.stringify(this.favouriteMovies[0]));
+      })
+    }
+
+    public getDistance() {
+      console.log("deni")
+      const matrix = new google.maps.DistanceMatrixService();
+      return new Promise((resolve, reject)=>{
+        matrix.getDistanceMatrix({
+        origins: [this.origin],
+        destinations: [this.destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        }, (response, status) => {
+          if(status === 'OK'){
+            resolve(response)
+            console.log(response)
+            this.distance = response.rows[0].elements[0].distance.text;
+            this.duration = response.rows[0].elements[0].duration.text;
+          }else{
+            reject(response);
+          }
+        });
       })
     }
 }

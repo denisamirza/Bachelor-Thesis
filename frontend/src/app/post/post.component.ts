@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SharedService } from "../shared/shared.service"
 import { HttpClient } from '@angular/common/http';
-import { AnyForUntypedForms } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -15,27 +15,36 @@ export class PostComponent implements OnInit {
   description: String = '';
   userImg: String = '';
   name: String = '';
+  email: String = '';
   surname: String = '';
   date: String = '';
   placeId: any = '';
-  commentNr: any;
+  @Output() commentNr: any;
   pinNr: any;
   place: any;
+  isPinned: boolean = false;
   @Output() commentNumberEmmiter = new EventEmitter<any>();
   @Output() pinNumberEmmiter = new EventEmitter<any>();
+  @Output("deletePinById") deletePinById: EventEmitter<any> = new EventEmitter();
+  @Output("addPostInPinList") addPostInPinList: EventEmitter<any> = new EventEmitter();
+  @Output("incrementCommentNr") incrementCommentNrToPost: EventEmitter<any> = new EventEmitter();
+  @Output("incrementPinNr") incrementPinNr: EventEmitter<any> = new EventEmitter();
+  @Output("decrementPinNr") decrementPinNr: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private http: HttpClient,
-    public shared: SharedService
+    public shared: SharedService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    console.log("deni")
-    this.http.get('http://code.pti.com.ro:8000/post/read-post/'+ this.id, {
+    this.isAlreadyPinned();
+    console.log("deniiii" + this.id)
+    this.http.get('https://pti.com.ro/post/read-post/'+ this.id, {
     }).subscribe(data => {
       console.log(data);
       let post = JSON.parse(JSON.stringify(data));
-      this.imgUrl = "http://code.pti.com.ro:8000/post/" + post.imgPath;
+      this.imgUrl = "https://pti.com.ro/post/" + post.imgPath;
       this.imgUrl = this.imgUrl.replace("\\", "/");
       this.title = post.title;
       this.description = post.description;
@@ -50,17 +59,28 @@ export class PostComponent implements OnInit {
         this.place = results[0].formatted_address;
         console.log(this.place)
       });
+      this.email = post.email;
       this.getUser(post.email);
     })
 
   }
 
+  isAlreadyPinned() {
+    console.log(this.isPinned)
+    this.http.get('https://pti.com.ro/pin/check-pin/' + this.shared.getEmail() + "/" + this.id , {
+  }).subscribe(data => {
+    console.log(data)
+    if (data != null)
+      this.isPinned = true;
+  })
+  }
+
   getUser(email: string): void {
-    this.http.get('http://code.pti.com.ro:8000/user/get-user/'+ email, {
+    this.http.get('https://pti.com.ro/user/get-user/'+ email, {
     }).subscribe(data => {
       console.log(data);
       let user = JSON.parse(JSON.stringify(data));
-      this.userImg = "http://code.pti.com.ro:8000/user/" + user.imgPath;
+      this.userImg = "https://pti.com.ro/user/" + user.imgPath;
       this.userImg = this.userImg.replace("\\", "/");
       this.name = user.name;
       this.surname = user.surname;
@@ -68,26 +88,58 @@ export class PostComponent implements OnInit {
   }
 
   pinPost(): void {
-    this.http.post('http://code.pti.com.ro:8000/pin/add-pin', {
+    console.log(this.shared.getEmail())
+    console.log(this.id)
+    this.http.post('https://pti.com.ro/pin/add-pin', {
       email: this.shared.getEmail(),
       postId: this.id,
     }).subscribe(data => {
-      console.log("added")
+      console.log(data)
+      this.isPinned = !this.isPinned;
+      this.pinNr++;
+      var json= {"email": this.email,
+      "postId": this.id,
+      "imgPath": this.imgUrl}
+      console.log(data)
+      this.addPostInPinList.emit(json);
+      this.incrementPinNr.emit(json);
+      if (this.shared.getEmail() != this.email) {
+        this.http.post('https://pti.com.ro/notification/add-notif', {
+          sender: this.shared.getEmail(),
+          receiver: this.email,
+          message: "pinned your post",
+          optionalPostId: this.id
+        }).subscribe(data => {
+
+        })
+    }
     })
   }
-
+  goToMap() {
+    this.router.navigate(['/map',  this.place]);
+  }
   sendCommentNr(eventData: { number: string }) {
-    console.log("wefewfef")
     this.commentNr = eventData.number;
     this.commentNumberEmmiter.emit(eventData.number);
-    console.log("wefewfssef")
+  }
+
+  incrementCommentNr() {
+    this.commentNr++;
   }
 
   sendPinNr(eventData: { number: string }) {
-    console.log("wefewfef")
     this.pinNr = eventData.number;
     this.pinNumberEmmiter.emit(eventData.number);
-    console.log("wefewfssef")
+  }
+
+  deletePin() {
+    this.http.delete('https://pti.com.ro/pin/delete-pin/' + this.shared.getEmail() + "/" + this.id, {
+    }).subscribe(data => {
+        this.deletePinById.emit();
+        this.isPinned = !this.isPinned;
+        this.pinNr--;
+        this.decrementPinNr.emit();
+    })
   }
 
 }

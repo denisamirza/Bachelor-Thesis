@@ -19,7 +19,7 @@ export class AddIncidentComponent implements OnInit {
 
   sendData(): void {
 
-    this.http.post('http://code.pti.com.ro:8000/user/login', {
+    this.http.post('https://pti.com.ro/user/login', {
 
           }).subscribe(data => {
 

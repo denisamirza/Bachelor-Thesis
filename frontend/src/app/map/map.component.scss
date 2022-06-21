@@ -19,6 +19,18 @@ agm-map {
   padding-right: 12vw;
 }
 
+.input2 {
+  background-color: #ffffff;
+  border: none;
+  width:81%;
+  border-radius: 15px;
+  height: 40px;
+  font-size: 20px;
+  margin: auto;
+  margin-right: 2vw;
+  padding-left: 13vw;
+}
+
 .search {
   padding: 10px;
   background-color: transparent;
@@ -37,6 +49,13 @@ header {
   margin-left: -10vw;
 }
 
+.left {
+  height: 5vw;
+  position: fixed;
+  margin-top: 12px;
+  margin-left: -88vw;
+}
+
 .enableGps {
   background-image: linear-gradient(rgb(55, 0, 158), rgb(255, 180, 180));
   height: 100vh;
@@ -46,6 +65,11 @@ header {
   font-weight: bold;
   padding: 55px;
   line-height: 140%;
+}
+
+.back {
+  height: 5vh;
+  background-color: #000000;
 }
 
 .gps {
@@ -77,15 +101,29 @@ button {
 .targetPlace {
   z-index: 10;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.642);
-  height: 18vh;
+  background-color: rgba(255, 255, 255, 0.79);
+  height: 40vh;
   width: 97vw;
-  top: 83vh;
+  top: 80vh;
   box-shadow: 5px 10px 20px rgba(28, 28, 28, 0.215) inset;
   padding: 5px;
   border-radius: 20px;
   text-align: center;
 }
+
+.startDriving {
+  width: 90vw;
+  height: 5vh;
+  background-color: rgb(97, 0, 162);
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 65px;
+  margin-left: -45vw;
+  font-size:medium;
+}
+
 
 h3 {
   padding-top: 7px;
@@ -94,6 +132,10 @@ h3 {
 
 h3, h4 {
   line-height: 8px;
+}
+h5 {
+  text-align: center;
+  color: blue;
 }
 
 .marker {

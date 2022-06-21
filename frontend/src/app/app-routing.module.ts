@@ -9,12 +9,12 @@ import { CommentsComponent } from './comments/comments.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: localStorage.getItem('email')?FeedComponent:(()=>{return LoginComponent})() },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'feed', component: FeedComponent },
+  { path: 'feed', component: FeedComponent},
   { path: 'profile/:email', component: ProfileComponent },
-  { path: 'map', component: MapComponent},
+  { path: 'map/:dest', component: MapComponent},
   { path: 'comments', component: CommentsComponent},
   { path: 'notifs', component: NotificationsComponent},
 ];

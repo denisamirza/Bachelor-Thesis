@@ -6,16 +6,22 @@
   </header>
   <div id="containerId">
     <img class="post-image" src={{imgUrl}}>
-    <img (click)="pinPost()" class="pin" id="example" class="center" src="assets/images/pin.png">
+    <ng-template [ngIf]="!isPinned">
+      <div id="example">
+        <img (click)="pinPost()" class="pin" class="center" src="assets/images/pin.png">
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="isPinned">
+      <div id="example">
+        <img (click)="deletePin()" class="pin" class="center" src="assets/images/delete.png">
+      </div>
+    </ng-template>
   </div>
   <div class="field">
     <div class="left_right">
       <div>
         <img src="{{userImg}}" class="userImg">
         <h3 class="name">{{name}} {{surname}}</h3>
-      </div>
-      <div>
-        <button class="follow">Follow</button>
       </div>
     </div>
   </div>
@@ -36,10 +42,10 @@
     <button (click)="shared.toggleDiv('post-'+id)"><span><img src="assets/images/comment.png" class="pin-comment">{{commentNr}}</span></button>
   </span>
   <div class="field" style="margin-top: 6.5vh;"></div>
-  <button class="footer-button"><span><img src="assets/images/dir.png" class="dir">  Get directions</span></button>
+  <button class="footer-button" (click)="goToMap()"><span><img src="assets/images/dir.png" class="dir">  Get directions</span></button>
 
   <div class="fit"></div>
-  <app-comments [id]='id' (commentNr)=sendCommentNr($event)></app-comments>
+  <app-comments [id]='id' [userEmail]='email' (commentNr)=sendCommentNr($event) (incrementCommentNr)="incrementCommentNr()"></app-comments>
   <app-post-pins [id]='id' (pinNr)=sendPinNr($event)></app-post-pins>
 </div>
 

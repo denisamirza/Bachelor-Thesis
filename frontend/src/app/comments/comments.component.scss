@@ -17,6 +17,8 @@ header {
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr 90%;
+  z-index: 30;
+  position: fixed;
 }
 
 .comment {

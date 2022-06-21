@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
     formData.append('image', this.form.get('image')?.value);
 
     this.http
-      .post('http://code.pti.com.ro:8000/user/add-user', formData)
+      .post('https://pti.com.ro/user/add-user', formData)
       .subscribe({
         next: (response) => {
           console.log(response)
@@ -105,7 +105,7 @@ export class RegisterComponent implements OnInit {
   }
 
   emailAlreadyExists(): boolean {
-    this.http.get('http://code.pti.com.ro:8000/user/get-user/'+ this.email.value, {
+    this.http.get('https://pti.com.ro/user/get-user/'+ this.email.value, {
     }).subscribe(data => {
       console.log(data);
       return true;

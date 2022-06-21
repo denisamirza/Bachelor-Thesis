@@ -82,7 +82,7 @@ export class AddPostComponent implements OnInit {
       formData.append('time', this.form.get('time')?.value);
 
       this.http
-        .post('http://code.pti.com.ro:8000/post/add-post', formData)
+        .post('https://pti.com.ro/post/add-post', formData)
         .subscribe({
           next: (response) => {
             console.log(response)
@@ -93,7 +93,7 @@ export class AddPostComponent implements OnInit {
   }
 
   getPostsOfUser() {
-    this.http.get('http://code.pti.com.ro:8000/post/get-post/' + this.shared.getEmail(), {
+    this.http.get('https://pti.com.ro/post/get-post/' + this.shared.getEmail(), {
           }).subscribe(data => {
             let arr = JSON.parse(JSON.stringify(data));
             for (let json of arr) {

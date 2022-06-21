@@ -35,3 +35,16 @@ h5 {
 .unseen {
   background-color: rgba(221, 221, 221, 0.549);
 }
+
+header {
+  background-image: linear-gradient(to bottom right,rgb(55, 0, 158), rgb(255, 180, 180));
+  height: 7vh;
+  width: 100vw;
+  z-index: 30;
+  position: fixed;
+}
+
+h2 {
+  padding-top: 10px;
+  text-align: center;
+}

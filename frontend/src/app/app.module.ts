@@ -37,8 +37,9 @@ import { PostPinsComponent } from './post-pins/post-pins.component';
 import { AgmDirectionModule } from 'agm-direction';
 import { AgmOverlays } from "agm-overlays";
 import { AddIncidentComponent } from './add-incident/add-incident.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { FollowComponent } from './follow/follow.component'
+import { NotificationsComponent } from './notifications/notifications.component'
+import { FollowComponent } from './follow/follow.component';
+import { ProfileWrapperComponent } from './profile-wrapper/profile-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { FollowComponent } from './follow/follow.component'
     PostPinsComponent,
     AddIncidentComponent,
     NotificationsComponent,
-    FollowComponent
+    FollowComponent,
+    ProfileWrapperComponent
   ],
   imports: [
     MatFormFieldModule,

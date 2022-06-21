@@ -1,5 +1,6 @@
 <footer>
   <div>
+
     <button class="column">
       <a routerLink="/feed"><img src={{shared.getFeedlogo()}} width="32vh"/></a>
     </button>
@@ -7,10 +8,12 @@
       <a [routerLink]="['/profile', shared.getEmail()]"><img src={{shared.getProfilelogo()}} width="32vh"/></a>
     </button>
     <button class="column">
-      <a routerLink="/notifs"><img src={{shared.getNotifslogo()}} width="32vh"/></a>
+      <a routerLink="/notifs">
+        <ng-template [ngIf]="haveUnseenNotifs"><div class="notif"></div></ng-template>
+        <img src={{shared.getNotifslogo()}} width="32vh"/></a>
     </button>
     <button class="column">
-      <a routerLink="/map"><img src={{shared.getMaplogo()}} width="32vh"/></a>
+      <a [routerLink]="['/map', 'false']"><img src={{shared.getMaplogo()}} width="32vh"/></a>
     </button>
   </div>
 </footer>

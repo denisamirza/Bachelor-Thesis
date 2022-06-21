@@ -52,7 +52,7 @@ export class SettingsComponent implements OnInit {
     console.log(formData.values())
 
     this.http
-      .post('http://code.pti.com.ro:8000/user/add-user', formData)
+      .post('https://pti.com.ro/user/add-user', formData)
       .subscribe({
         next: (response) => {
           console.log(response)

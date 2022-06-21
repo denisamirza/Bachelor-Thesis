@@ -30,14 +30,14 @@ export class PostPinsComponent implements OnInit {
   }
 
   getPostPins(): void {
-    this.http.get('http://code.pti.com.ro:8000/pin/get-pin/' + this.id, {
+    this.http.get('https://pti.com.ro/pin/get-pin/' + this.id, {
     }).subscribe(data => {
       console.log(JSON.stringify(data));
       let pins = JSON.parse(JSON.stringify(data));
       for (let json of pins) {
-        this.http.get('http://code.pti.com.ro:8000/user/get-user/' + json.email, {}).subscribe(data => {
+        this.http.get('https://pti.com.ro/user/get-user/' + json.email, {}).subscribe(data => {
           let user = JSON.parse(JSON.stringify(data));
-          let url = "http://code.pti.com.ro:8000/user/" ;
+          let url = "https://pti.com.ro/user/" ;
           url = url + user.imgPath;
           url = url.replace("\\", "/");
           json.userImg = url;

@@ -13,8 +13,9 @@ export class CommentsComponent implements OnInit {
   @Input() id: string = '';
   comment: String ='';
   comments: any = [];
-  user: any;
+  @Input() userEmail: any;
   @Output() commentNr = new EventEmitter<{ number: any }>();
+  @Output("incrementCommentNr") incrementCommentNr: EventEmitter<any> = new EventEmitter();
 
   setCommentNumber() {
     console.log("lalaal")
@@ -32,14 +33,14 @@ export class CommentsComponent implements OnInit {
   }
 
   getComments(): void {
-    this.http.get('http://code.pti.com.ro:8000/comment/get-comment/' + this.id, {
+    this.http.get('https://pti.com.ro/comment/get-comment/' + this.id, {
     }).subscribe(data => {
       console.log(JSON.stringify(data));
       let comments = JSON.parse(JSON.stringify(data));
       for (let json of comments) {
-        this.http.get('http://code.pti.com.ro:8000/user/get-user/' + json.email, {}).subscribe(data => {
+        this.http.get('https://pti.com.ro/user/get-user/' + json.email, {}).subscribe(data => {
           let user = JSON.parse(JSON.stringify(data));
-          let url = "http://code.pti.com.ro:8000/user/" ;
+          let url = "https://pti.com.ro/user/" ;
           url = url + user.imgPath;
           url = url.replace("\\", "/");
           json.userImg = url;
@@ -54,12 +55,27 @@ export class CommentsComponent implements OnInit {
   }
 
   addComment(event: any): void {
-    this.http.post('http://code.pti.com.ro:8000/comment/add-comment', {
+    this.http.post('https://pti.com.ro/comment/add-comment', {
             comment: this.comment,
             email: this.shared.getEmail(),
             postId: this.id
           }).subscribe(data => {
-              this.comment = '';
+            this.http.post('https://pti.com.ro/notification/add-notif', {
+              sender: this.shared.getEmail(),
+              receiver: this.userEmail,
+              message: "commented on your post",
+              optionalPostId: this.id
+            }).subscribe(data => {
+              var json= {"comment": this.comment,
+                        "surname": this.shared.getSurname(),
+                        "name": this.shared.getName(),
+                        "userImg": this.shared.getImgSrc()};
+              console.log(json)
+              this.comments.push(json);
+              this.setCommentNumber();
+            })
+            this.incrementCommentNr.emit();
+            this.comment = ''
           })
   }
 }

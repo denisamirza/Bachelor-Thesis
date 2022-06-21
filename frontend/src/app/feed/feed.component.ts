@@ -24,12 +24,12 @@ export class FeedComponent implements OnInit {
   }
 
   getPosts() {
-    this.http.get('http://code.pti.com.ro:8000/post/', {
+    this.http.get('https://pti.com.ro/post/', {
     }).subscribe(data => {
       let posts = JSON.parse(JSON.stringify(data));
       for (let json of posts) {
         console.log(json);
-        let imgPath = "http://code.pti.com.ro:8000/user/" + json.imgPath;
+        let imgPath = "https://pti.com.ro/user/" + json.imgPath;
         imgPath = imgPath.replace("\\", "/");
         json.imgPath = imgPath;
         this.posts.push(json);
@@ -37,19 +37,20 @@ export class FeedComponent implements OnInit {
     })
   }
   getPostWithLocation() {
-    this.http.get('http://code.pti.com.ro:8000/post/get-post-after-place/' + this.result, {
+    this.http.get('https://pti.com.ro/post/get-post-after-place/' + this.result, {
     }).subscribe(data => {
       this.posts = [];
       let posts = JSON.parse(JSON.stringify(data));
       for (let json of posts) {
         console.log(json);
-        let imgPath = "http://code.pti.com.ro:8000/user/" + json.imgPath;
+        let imgPath = "https://pti.com.ro/user/" + json.imgPath;
         imgPath = imgPath.replace("\\", "/");
         json.imgPath = imgPath;
         this.posts.push(json);
       }
     })
   }
+
   setCommentNumber(newItem: any, item: any) {
     console.log('lalalalalala')
     console.log(newItem)
