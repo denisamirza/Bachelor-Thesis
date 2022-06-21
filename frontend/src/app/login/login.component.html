@@ -6,7 +6,7 @@
     <h2>Please enter your credentials</h2>
     <div class="example-form" [formGroup]="form">
       <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Email</mat-label>
+        <mat-label>Username</mat-label>
         <input matInput formControlName="email" required>
         <mat-error style="font-size:14px;" *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
