@@ -7,19 +7,16 @@
   </header>
 
   <ng-container *ngFor="let item of pins">
+
     <div class="field">
       <div class="left_right">
-        <div>
+        <div (click)="shared.toggleDiv(item.email)">
           <img src="{{item.userImg}}" class="userImg">
           <h3 class="name">{{item.name}} {{item.surname}}</h3>
         </div>
-        <div>
-          <button class="follow">Follow</button>
-        </div>
       </div>
     </div>
+
   </ng-container>
-
-
 </div>
 

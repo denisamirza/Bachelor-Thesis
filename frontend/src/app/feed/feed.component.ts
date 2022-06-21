@@ -23,6 +23,19 @@ export class FeedComponent implements OnInit {
     this.getPosts();
   }
 
+
+  incrementCommentNr(item: any) {
+    item.commentNr++;
+  }
+
+  incrementPinNr(item: any) {
+    console.log("deniiiiiiiiiiiii" + item)
+    item.pinNr++;
+  }
+
+  decrementPinNr(item: any) {
+    item.pinNr--;
+  }
   getPosts() {
     this.http.get('https://pti.com.ro/post/', {
     }).subscribe(data => {

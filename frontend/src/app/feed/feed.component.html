@@ -12,7 +12,7 @@
 <div class="container" id="postsDiv">
   <ng-container *ngFor="let item of posts">
     <div class="cell">
-      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" (pinNumberEmmiter)="setPinNumber($event, item)" [id]='item._id'></app-post>
+      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" (pinNumberEmmiter)="setPinNumber($event, item)" (incrementPinNr)="incrementPinNr(item)" (incrementCommentNr)="incrementCommentNr(item)" (decrementPinNr)="decrementPinNr(item)" [id]='item._id'></app-post>
       <div id="containerId">
         <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item._id)">
       </div>

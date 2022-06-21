@@ -21,7 +21,7 @@
 
       <agm-info-window>
         <strong>{{item.name}} {{item.surname}}</strong>
-        <h5 (click)="goToProfile(item.email)">View Profile</h5>
+        <h5 (click)="shared.toggleDiv(item.email)">View Profile</h5>
 
       </agm-info-window>
 

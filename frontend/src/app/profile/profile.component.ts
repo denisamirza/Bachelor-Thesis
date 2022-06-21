@@ -117,6 +117,7 @@ export class ProfileComponent implements OnInit {
       let pins = JSON.parse(JSON.stringify(data));
       for (let json of pins) {
         console.log(json._id);
+        json._id = json.postId;
         this.http.get('https://pti.com.ro/post/read-post/'+ json.postId, {
         }).subscribe(data => {
           console.log(data);
@@ -126,8 +127,9 @@ export class ProfileComponent implements OnInit {
           json.title = post.title;
           json.description = post.description;
           json.date = post.time;
+          this.pins.push(json);
         })
-        this.pins.push(json);
+
       }
       console.log(Object.keys(this.pins).length);
     })
@@ -148,7 +150,8 @@ export class ProfileComponent implements OnInit {
       followed: this.email,
     }).subscribe(data => {
       this.followButton = "Unfollow";
-      var json= {"name": this.shared.getName(),
+      var json= {"email": this.shared.getEmail(),
+                "name": this.shared.getName(),
                 "surname": this.shared.getSurname(),
                 "userImg": this.shared.getImgSrc()}
       console.log(json)
@@ -170,7 +173,16 @@ export class ProfileComponent implements OnInit {
   }
 
   unfollow() {
-
+    this.http.delete('https://pti.com.ro/follower/delete-follow/' + this.shared.getEmail() + "/" + this.email, {
+    }).subscribe(data => {
+      this.followButton = "Follow";
+      this.followers.forEach( (item: any, index: any) => {
+        if(item.email === this.shared.getEmail()) {
+          console.log("detleteee" + item)
+          this.followers.splice(index,1);
+        }
+      });
+    })
   }
 
   incrementCommentNr(item: any) {

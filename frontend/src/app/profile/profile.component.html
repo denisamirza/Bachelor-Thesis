@@ -40,9 +40,9 @@
 <div class="container" id="pinsDiv" style="display: none;">
   <ng-container *ngFor="let item of pins">
     <div class="cell">
-      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" (pinNumberEmmiter)="setPinNumber($event, item)" [id]='item._id'></app-post>
+      <app-post (commentNumberEmmiter)="setCommentNumber($event, item)" (pinNumberEmmiter)="setPinNumber($event, item)" (deletePinById)="deletePinById(item._id)" (addPostInPinList)="addPostInPinList(item)" (incrementPinNr)="incrementPinNr(item)" (incrementCommentNr)="incrementCommentNr(item)" (decrementPinNr)="decrementPinNr(item)" [id]='item._id'></app-post>
       <div id="containerId">
-        <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item.postId)">
+        <img class="post-image" src={{item.imgPath}} (click)="shared.toggleDiv(item._id)">
       </div>
       <h4>{{item.title}}</h4>
       <div class="inline">

@@ -194,6 +194,7 @@ public markerOptions = {
     toPlace() {
       this.destination = this.dest;
       this.drivingMode = false;
+      this.getDistance()
     }
 
     onLocationSelected(location: Location) {

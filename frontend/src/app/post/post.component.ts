@@ -98,7 +98,7 @@ export class PostComponent implements OnInit {
       this.isPinned = !this.isPinned;
       this.pinNr++;
       var json= {"email": this.email,
-      "postId": this.id,
+      "_id": this.id,
       "imgPath": this.imgUrl}
       console.log(data)
       this.addPostInPinList.emit(json);

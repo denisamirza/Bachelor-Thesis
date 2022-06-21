@@ -15,7 +15,11 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.151);
 }
 
-.userImg {
+.center {
+  margin-right: -30vw;
+}
+
+.userImgg {
   padding-top: 20px;
   width: 10vw;
   height: 10vw;
@@ -40,7 +44,7 @@ header {
   background-image: linear-gradient(to bottom right,rgb(55, 0, 158), rgb(255, 180, 180));
   height: 7vh;
   width: 100vw;
-  z-index: 30;
+  z-index: 3;
   position: fixed;
 }
 

@@ -1,21 +1,28 @@
-  <header>
-    <h2>Notifications</h2>
-  </header>
+<header>
+  <h2>Notifications</h2>
+</header>
 
-  <div style="height: 57px;"></div>
+<div style="height: 57px;"></div>
+<ng-container *ngFor="let item of notifs">
+  <ng-template [ngIf]="item.optionalPostId">
+    <app-post [id]="item.optionalPostId"></app-post>
+  </ng-template>
+</ng-container>
+<ng-container *ngFor="let item of notifs">
 
-  <ng-container *ngFor="let item of notifs">
-    <div class="next" [ngClass]="item.seen ? '' : 'unseen'">
-      <img src="{{item.userImg}}" class="userImg" style="margin-top: auto; margin-bottom: 5vw;">
-      <div style="margin: auto; margin-left: -5vw">
-        <h5 style="font-weight: bold;">{{item.name}} {{item.surname}}</h5>
-        <h5> {{item.message}}</h5>
-      </div>
-      <ng-template [ngIf]="item.optionalPostId">
-        <img src="../assets/images/ankara.jpg" class="postImg">
-      </ng-template>
+  <app-profile-wrapper [email]="item.sender"></app-profile-wrapper>
+  <div class="next" [ngClass]="item.seen ? '' : 'unseen'">
+    <img (click)="shared.toggleDiv(item.sender)" src="{{item.userImg}}" class="userImgg" style="margin-top: auto; margin-bottom: 5vw;">
+    <div style="margin: auto; margin-left: -5vw">
+      <h5 style="font-weight: bold;">{{item.name}} {{item.surname}}</h5>
+      <h5> {{item.message}}</h5>
     </div>
-  </ng-container>
+    <ng-template [ngIf]="item.optionalPostId">
+      <img src="{{item.imgPath}}" (click)="shared.toggleDiv(item.optionalPostId)" class="postImg">
+    </ng-template>
+  </div>
 
-  <div style="height: 50px;"></div>
+</ng-container>
+
+<div style="height: 50px;"></div>
 <app-navbar></app-navbar>

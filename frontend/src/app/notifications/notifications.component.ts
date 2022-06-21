@@ -26,15 +26,17 @@ export class NotificationsComponent implements OnInit {
     console.log(JSON.stringify(data));
     let notifs = JSON.parse(JSON.stringify(data));
     for (let json of notifs) {
-      console.log(json._id);
+      console.log(json);
       this.http.get('https://pti.com.ro/user/get-user/' + json.sender, {}).subscribe(data => {
         let user = JSON.parse(JSON.stringify(data));
+        console.log(data)
         let url = "https://pti.com.ro/user/" ;
         url = url + user.imgPath;
         url = url.replace("\\", "/");
         json.userImg = url;
         json.name = user.name;
         json.surname = user.surname;
+        console.log(json)
       });
       if (json.optionalPostId) {
         console.log("heeeeeeeeeeeeeee")
@@ -46,9 +48,16 @@ export class NotificationsComponent implements OnInit {
           imgUrl = imgUrl.replace("\\", "/");
           json.imgPath = imgUrl;
           json.title = post.title;
+          json.postId = post._id;
+          console.log(json)
+          this.notifs.push(json);
         })
       }
-      this.notifs.push(json);
+      else {
+        this.notifs.push(json);
+      }
+
+
     }
     console.log(Object.keys(this.notifs).length);
   })

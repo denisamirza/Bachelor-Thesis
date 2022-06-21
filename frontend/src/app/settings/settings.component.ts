@@ -23,6 +23,7 @@ export class SettingsComponent implements OnInit {
         name: [null],
         surname: [null],
         email: [this.shared.getEmail()],
+        oldPassword: [null],
         password: [null],
         image: [null],
       });
@@ -33,7 +34,13 @@ export class SettingsComponent implements OnInit {
 
   update(): void {
     var formData: any = new FormData();
-
+    if (this.form.get('oldPassword')?.value  == null) {
+      alert('Please type the old password')
+      return
+    }
+    else {
+      formData.append('oldPassword', this.form.get('oldPassword')?.value);
+    }
     formData.append('email', this.form.get("email")?.value);
     if (this.form.get('surname')?.value != null) {
       console.log(this.form.get('surname')?.value)

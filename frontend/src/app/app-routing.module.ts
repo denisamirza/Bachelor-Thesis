@@ -15,8 +15,8 @@ const routes: Routes = [
   { path: 'feed', component: FeedComponent},
   { path: 'profile/:email', component: ProfileComponent },
   { path: 'map/:dest', component: MapComponent},
-  { path: 'comments', component: CommentsComponent},
   { path: 'notifs', component: NotificationsComponent},
+  { path: 'comments', component: CommentsComponent},
 ];
 
 @NgModule({

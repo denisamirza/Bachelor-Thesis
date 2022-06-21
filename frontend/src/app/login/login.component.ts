@@ -49,8 +49,15 @@ export class LoginComponent implements OnInit {
             email: this.form.get("email")?.value,
             password: this.form.get("password")?.value
           }).subscribe(data => {
-            this.shared.setEmail(this.form.get("email")?.value);
-            this.router.navigate([`profile`, this.shared.getEmail()]);
+            let status = JSON.parse(JSON.stringify(data));
+            console.log(data)
+            if (status.status == 'ok') {
+              this.shared.setEmail(this.form.get("email")?.value);
+              this.router.navigate([`profile`, this.shared.getEmail()]);
+            }
+            else {
+              alert("Wrong credentials");
+            }
           })
   }
 }
